@@ -2,16 +2,26 @@
 
 #include "Singleton.h"
 
-enum class ELib {
+enum class ELibrary {
 	SDL,
 	Raylib
 };
+
+class Window;
 
 class Game : public Singleton<Game>
 {
 public:
 
-	Game(const ELib& Library);
+	Game(const ELibrary& Library);
+
+private:
+
+	ELibrary mSelectedLibrary;
+
+	Window* mWindow;
+
+public:
 
 	void Init();
 

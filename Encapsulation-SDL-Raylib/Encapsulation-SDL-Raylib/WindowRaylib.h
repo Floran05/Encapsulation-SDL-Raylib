@@ -7,9 +7,10 @@ class WindowRaylib : public Window
 {
 	WindowRaylib();
 	~WindowRaylib();
-	void CreateWindow(const std::string& WindowTitle, int Width, int Height);
-	void DrawSprite(Sprite* Sprite);
-	void BeginDraw();
-	void EndDraw();
+	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) override;
+	virtual void DrawEntity(Entity* Entity) override;
+	virtual void BeginDraw() override;
+	virtual void EndDraw() override;
+	virtual void DestroyWindow() override;
 };
 

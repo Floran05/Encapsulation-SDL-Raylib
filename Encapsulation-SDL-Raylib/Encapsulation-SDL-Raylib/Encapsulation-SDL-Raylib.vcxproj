@@ -177,6 +177,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="TimeManagerRaylib.h" />
     <ClInclude Include="TimeManagerSDL.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowRaylib.h" />
     <ClInclude Include="WindowSDL.h" />
