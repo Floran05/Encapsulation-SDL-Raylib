@@ -5,21 +5,26 @@
 #include "WindowSDL.h"
 #include "WindowRaylib.h"
 
-Game::Game(const ELibrary& Library)
+
+#include "EntitySDL.h"
+
+Game::Game()
 	: mSelectedLibrary(ELibrary::SDL)
 	, mWindow(nullptr)
 {
 }
 
-void Game::Init()
+void Game::Init(const ELibrary& Library)
 {
+	mSelectedLibrary = Library;
+
 	switch (mSelectedLibrary)
 	{
 	case ELibrary::SDL:
 		mWindow = new WindowSDL();
 		break;
 	case ELibrary::Raylib:
-		// mWindow = new WindowRaylib();
+		mWindow = new WindowRaylib();
 		break;
 	default:
 		std::cerr << "Bad library selected. Exiting..." << std::endl;
@@ -28,5 +33,10 @@ void Game::Init()
 		break;
 	}
 
+	mWindow->InitLibrary();
+	mWindow->CreateWindow("Encapsulation - SDL - Raylib", 1080, 720);
+}
 
+void Game::Loop()
+{
 }

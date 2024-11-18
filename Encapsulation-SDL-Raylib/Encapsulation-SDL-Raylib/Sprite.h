@@ -6,7 +6,7 @@ class Sprite
 {
 public:
 
-	virtual void Load(const std::string& PathToFile) = 0;
+	virtual bool Load(const std::string& PathToFile) = 0;
 
 private:
 

@@ -17,7 +17,9 @@ private:
 
 public:
 
-	virtual void Load(const std::string& PathToFile) override;
+	virtual bool Load(const std::string& PathToFile) override;
+
+	virtual SDL_Surface* GetImage() const { return mImage; }
 
 };
 

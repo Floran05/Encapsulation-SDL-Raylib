@@ -149,6 +149,8 @@
     <ClCompile Include="ControllerSDL.cpp" />
     <ClCompile Include="Encapsulation-SDL-Raylib.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityRaylib.cpp" />
+    <ClCompile Include="EntitySDL.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Singleton.cpp" />
@@ -168,6 +170,8 @@
     <ClInclude Include="ControllerRaylib.h" />
     <ClInclude Include="ControllerSDL.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityRaylib.h" />
+    <ClInclude Include="EntitySDL.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Singleton.h" />

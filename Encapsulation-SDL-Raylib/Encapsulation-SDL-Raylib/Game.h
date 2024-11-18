@@ -13,7 +13,7 @@ class Game : public Singleton<Game>
 {
 public:
 
-	Game(const ELibrary& Library);
+	Game();
 
 private:
 
@@ -23,7 +23,9 @@ private:
 
 public:
 
-	void Init();
+	void Init(const ELibrary& Library);
+
+	void Loop();
 
 };
 

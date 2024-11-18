@@ -11,6 +11,6 @@ public:
 
 	SpriteRaylib();
 	~SpriteRaylib();
-	void Load(const std::string& PathToFile) override;
+	bool Load(const std::string& PathToFile) override;
 };
 

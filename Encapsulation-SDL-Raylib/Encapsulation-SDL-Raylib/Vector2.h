@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+namespace Custom
+{
 template<typename T>
 class Vector2
 {
@@ -127,3 +129,4 @@ inline std::ostream& operator<<(std::ostream& os, const Vector2<T>& v)
 
 typedef Vector2<float> Vector2f;
 typedef Vector2<unsigned int> Vector2u;
+}
