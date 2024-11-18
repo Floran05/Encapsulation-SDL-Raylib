@@ -4,5 +4,11 @@
 
 class WindowSDL : public Window
 {
+public:
+
+	WindowSDL();
+	virtual ~WindowSDL();
+
+
 };
 

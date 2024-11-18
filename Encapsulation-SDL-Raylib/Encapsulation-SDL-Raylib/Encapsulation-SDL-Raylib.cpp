@@ -7,6 +7,8 @@
 #include <SDL2/SDL.h>
 #include "raylib.h"
 
+#include "WindowSDL.h"
+
 int main(int argc, char* argv[]) {
 
 	std::cout << "Hello World ! " << std::endl;
