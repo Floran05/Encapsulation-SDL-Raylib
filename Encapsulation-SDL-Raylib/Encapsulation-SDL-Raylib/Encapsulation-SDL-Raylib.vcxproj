@@ -74,6 +74,9 @@
     <LibraryPath>C:\Users\fcarvalho\Documents\SDL2-2.30.9\lib\x64;$(LibraryPath)</LibraryPath>
     <IncludePath>C:\Users\fcarvalho\Documents\SDL2-2.30.9\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>false</VcpkgEnableManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -108,7 +111,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\fcarvalho\Documents\SDL2-2.30.9\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +137,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="ControllerRaylib.cpp" />
+    <ClCompile Include="ControllerSDL.cpp" />
     <ClCompile Include="Encapsulation-SDL-Raylib.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteRaylib.cpp" />
+    <ClCompile Include="SpriteSDL.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="TimeManagerRaylib.cpp" />
+    <ClCompile Include="TimeManagerSDL.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WindowRaylib.cpp" />
+    <ClCompile Include="WindowSDL.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="ControllerRaylib.h" />
+    <ClInclude Include="ControllerSDL.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteRaylib.h" />
+    <ClInclude Include="SpriteSDL.h" />
+    <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="TimeManagerRaylib.h" />
+    <ClInclude Include="TimeManagerSDL.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowRaylib.h" />
+    <ClInclude Include="WindowSDL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
