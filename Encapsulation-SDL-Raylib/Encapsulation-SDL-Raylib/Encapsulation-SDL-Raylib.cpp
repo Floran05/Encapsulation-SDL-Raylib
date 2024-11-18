@@ -7,11 +7,10 @@
 #include <SDL2/SDL.h>
 #include "raylib.h"
 
-#include "WindowSDL.h"
+#include "Game.h"
 
-int main(int argc, char* argv[]) {
-
-	std::cout << "Hello World ! " << std::endl;
+int main(int argc, char* argv[])
+{
 
 	return 0;
 }
