@@ -41,7 +41,7 @@ void WindowSDL::InitLibrary()
 		exit(1);
 	}
 
-	if (!TTF_Init())
+	if (TTF_Init() < 0)
 	{
 		std::cerr << "Error Initializing SDL_TTF : " << TTF_GetError() << std::endl;
 		SDL_Quit();
@@ -119,6 +119,7 @@ void WindowSDL::DrawEntity(Entity* Entity)
 
 void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSize)
 {
+	//TTF_Text txt()
 	//TTF_DrawSurfaceText()
 }
 
