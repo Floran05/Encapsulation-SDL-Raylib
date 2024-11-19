@@ -16,6 +16,7 @@ public:
 	
 	virtual void BeginDraw() = 0;
 	virtual void DrawEntity(Entity* Entity) = 0;
+	virtual void DrawText(const std::string& Text , int PosX , int PosY , int fontSize) = 0;
 	virtual void EndDraw() = 0;
 
 	virtual void DestroyWindow() = 0;

@@ -47,6 +47,11 @@ void WindowRaylib::BeginDraw()
 	ClearBackground(RAYWHITE);
 }
 
+void WindowRaylib::DrawText(const std::string& Text , int PosX, int PosY,int FontSize)
+{
+	::DrawText(Text.c_str(), PosX, PosY, FontSize, WHITE);
+}
+
 void WindowRaylib::EndDraw()
 {	
 	EndDrawing();
