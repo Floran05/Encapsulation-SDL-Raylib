@@ -17,7 +17,7 @@ void TimeManagerRaylib::SetMaxFramerate(int Framerate)
 
 float TimeManagerRaylib::GetTime()
 {
-	return ::GetTime() / 1000.f;
+	return ::GetTime() ;
 }
 
 void TimeManagerRaylib::OnFrameStart()

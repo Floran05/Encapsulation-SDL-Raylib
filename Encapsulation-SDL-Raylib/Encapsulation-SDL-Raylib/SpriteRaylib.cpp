@@ -6,6 +6,7 @@ SpriteRaylib::SpriteRaylib()
 
 SpriteRaylib::~SpriteRaylib()
 {
+	UnloadTexture(mImage);
 }
 
 bool SpriteRaylib::Load(const std::string& PathToFile)
@@ -17,4 +18,9 @@ bool SpriteRaylib::Load(const std::string& PathToFile)
 	}
 
 	return true;
+}
+
+Texture2D SpriteRaylib::GetTexture()
+{
+	return mImage;
 }
