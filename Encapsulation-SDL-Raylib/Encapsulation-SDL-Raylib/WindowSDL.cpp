@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "Entity.h"
 #include "Game.h"
@@ -35,6 +36,16 @@ void WindowSDL::InitLibrary()
 	if (!(IMG_Init(supportedFormats) & supportedFormats))
 	{
 		std::cerr << "Error Initializing SDL_image : " << IMG_GetError() << std::endl;
+		SDL_Quit();
+		system("pause");
+		exit(1);
+	}
+
+	if (!TTF_Init())
+	{
+		std::cerr << "Error Initializing SDL_TTF : " << TTF_GetError() << std::endl;
+		SDL_Quit();
+		IMG_Quit();
 		system("pause");
 		exit(1);
 	}
@@ -106,6 +117,11 @@ void WindowSDL::DrawEntity(Entity* Entity)
 	int drawResult = SDL_BlitSurface(sdlSprite->GetImage(), NULL, mWindowSurface, &targetPosition);
 }
 
+void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSize)
+{
+	//TTF_DrawSurfaceText()
+}
+
 void WindowSDL::BeginDraw()
 {
 }
@@ -126,6 +142,7 @@ void WindowSDL::DestroyWindow()
 
 	SDL_Quit();
 	IMG_Quit();
+	TTF_Quit();
 }
 
 
