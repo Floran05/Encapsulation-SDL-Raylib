@@ -33,6 +33,10 @@ void WindowRaylib::DrawEntity(Entity* Entity)
 	
 }
 
+void WindowRaylib::ProcessEvents()
+{
+}
+
 void WindowRaylib::BeginDraw()
 {
 	BeginDraw();
