@@ -1,7 +1,7 @@
 #include "Game.h"
 
 #include <iostream>
-
+#include <string>  
 #include "WindowSDL.h"
 #include "WindowRaylib.h"
 #include "TimeManagerSDL.h"
@@ -48,7 +48,7 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 
 	mTimeManager->SetMaxFramerate(MaxFramerate);
 
-	mE->Init("C:\\Users\\fcarvalho\\Pictures\\sample_PNG.png");
+	mE->Init("C:\\Users\\L3iith\\Desktop\\ball.png");
 }
 
 void Game::Loop()
@@ -57,11 +57,15 @@ void Game::Loop()
 	{
 		mTimeManager->OnFrameStart();
 		mWindow->ProcessEvents();
+		
 
 		mWindow->BeginDraw();
 		// update balls
 		// update player
 		mWindow->DrawEntity(mE);
+		
+		mWindow->DrawText(std::to_string(static_cast<int>(round(1 / mTimeManager->GetElapsedTime())))+" FPS", 980, 50, 20);
+	
 		// draw
 		// draw fps
 		mWindow->EndDraw();

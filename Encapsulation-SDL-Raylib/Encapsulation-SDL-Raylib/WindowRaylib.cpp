@@ -44,7 +44,7 @@ void WindowRaylib::ProcessEvents()
 void WindowRaylib::BeginDraw()
 {
 	BeginDrawing();
-	ClearBackground(RAYWHITE);
+	ClearBackground(BLACK);
 }
 
 void WindowRaylib::DrawText(const std::string& Text , int PosX, int PosY,int FontSize)

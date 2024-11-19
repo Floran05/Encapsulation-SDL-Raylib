@@ -4,7 +4,12 @@
 
 class Ball : public Entity
 {
-public:
 
+public:
+	Ball();
+	~Ball();
+	void Update();
+	void CheckCollision();
+	//void Draw();
 };
 

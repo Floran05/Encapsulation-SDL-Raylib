@@ -32,7 +32,8 @@ private:
 public:
 
 	Controller* GetController() const { return mController; }
-
+	Window* GetWindow() const { return mWindow; }
+	TimeManager* GetTimeManager() const { return mTimeManager; }
 	void Init(
 		const ELibrary& Library, 
 		const std::string& WindowTitle, 
@@ -41,6 +42,6 @@ public:
 		int MaxFramerate);
 
 	void Loop();
-
+	
 };
 
