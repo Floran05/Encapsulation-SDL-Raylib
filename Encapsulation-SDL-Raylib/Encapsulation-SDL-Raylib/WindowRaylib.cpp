@@ -1,6 +1,7 @@
 #include "WindowRaylib.h"
 #include <iostream>
-
+#include "Entity.h"
+#include"SpriteRaylib.h"
 WindowRaylib::WindowRaylib() {
 
 }
@@ -24,6 +25,11 @@ void WindowRaylib::CreateWindow(const std::string& WindowTitle, int Width, int H
 
 void WindowRaylib::DrawEntity(Entity* Entity)
 {
+	Vector2 Position;
+	Position.x = Entity->GetPosition().x;
+	Position.y = Entity->GetPosition().y;
+	SpriteRaylib* sprite = dynamic_cast<SpriteRaylib*>(Entity->GetSprite());
+	DrawTextureV(sprite->GetTexture(),Position,WHITE);
 	
 }
 
