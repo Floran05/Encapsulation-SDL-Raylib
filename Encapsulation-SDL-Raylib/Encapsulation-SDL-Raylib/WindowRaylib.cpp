@@ -23,14 +23,18 @@ void WindowRaylib::CreateWindow(const std::string& WindowTitle, int Width, int H
 	}
 }
 
+bool WindowRaylib::IsWindowOpen()
+{
+	return !WindowShouldClose();
+}
+
 void WindowRaylib::DrawEntity(Entity* Entity)
 {
 	Vector2 Position;
 	Position.x = Entity->GetPosition().x;
 	Position.y = Entity->GetPosition().y;
 	SpriteRaylib* sprite = dynamic_cast<SpriteRaylib*>(Entity->GetSprite());
-	DrawTextureV(sprite->GetTexture(),Position,WHITE);
-	
+	DrawTexture(sprite->GetTexture(), 0, 0, WHITE);
 }
 
 void WindowRaylib::ProcessEvents()
@@ -39,12 +43,13 @@ void WindowRaylib::ProcessEvents()
 
 void WindowRaylib::BeginDraw()
 {
-	BeginDraw();
+	BeginDrawing();
+	ClearBackground(RAYWHITE);
 }
 
 void WindowRaylib::EndDraw()
 {	
-	EndDraw();
+	EndDrawing();
 }
 
 void WindowRaylib::DestroyWindow()

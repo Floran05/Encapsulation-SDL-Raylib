@@ -12,6 +12,7 @@
 WindowSDL::WindowSDL()
 	: mWindowSurface(nullptr)
 	, mWindow(nullptr)
+	, mWindowOpen(true)
 {
 }
 
@@ -67,6 +68,11 @@ void WindowSDL::CreateWindow(const std::string& WindowTitle, int Width, int Heig
 	}
 }
 
+bool WindowSDL::IsWindowOpen()
+{
+	return mWindowOpen;
+}
+
 void WindowSDL::ProcessEvents()
 {
 	SDL_Event ev;
@@ -78,7 +84,7 @@ void WindowSDL::ProcessEvents()
 		switch (ev.type)
 		{
 		case SDL_QUIT:
-			I(Game)->StopRunning();
+			mWindowOpen = false;
 			break;
 		case SDL_KEYDOWN:
 			controller->AddKeyToListOfPressedKey(ev.key.keysym.sym);

@@ -10,6 +10,7 @@ public:
 
 	virtual void InitLibrary() = 0;
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) = 0;
+	virtual bool IsWindowOpen() = 0;
 
 	virtual void ProcessEvents() = 0;
 	

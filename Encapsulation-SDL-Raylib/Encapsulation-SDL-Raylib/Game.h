@@ -11,6 +11,7 @@ enum class ELibrary {
 class Window;
 class Controller;
 class TimeManager;
+class Entity;
 
 class Game : public Singleton<Game>
 {
@@ -20,13 +21,13 @@ public:
 
 private:
 
-	bool mRunning;
-
 	ELibrary mSelectedLibrary;
 
 	Window* mWindow;
 	Controller* mController;
 	TimeManager* mTimeManager;
+
+	Entity* mE;
 
 public:
 
@@ -40,7 +41,6 @@ public:
 		int MaxFramerate);
 
 	void Loop();
-	void StopRunning();
 
 };
 

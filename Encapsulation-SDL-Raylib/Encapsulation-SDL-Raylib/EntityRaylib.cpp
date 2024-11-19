@@ -2,6 +2,7 @@
 #include "SpriteRaylib.h"
 EntityRaylib::EntityRaylib()
 {
+	mPosition = { 0.f, 0.f };
 }
 
 EntityRaylib::~EntityRaylib()

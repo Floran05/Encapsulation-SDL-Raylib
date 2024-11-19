@@ -17,10 +17,13 @@ private:
 	SDL_Surface* mWindowSurface;
 	SDL_Window* mWindow;
 
+	bool mWindowOpen;
+
 public:
 
 	virtual void InitLibrary() override;
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) override;
+	virtual bool IsWindowOpen() override;
 
 	virtual void ProcessEvents() override;
 
