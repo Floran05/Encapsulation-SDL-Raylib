@@ -12,6 +12,7 @@ TimeManagerRaylib::~TimeManagerRaylib()
 void TimeManagerRaylib::SetMaxFramerate(int Framerate)
 {
 	mMaxFrameRate = Framerate;
+	SetTargetFPS(mMaxFrameRate);
 }
 
 float TimeManagerRaylib::GetTime()
@@ -30,5 +31,4 @@ float TimeManagerRaylib::GetElapsedTime()
 
 void TimeManagerRaylib::ApplyFramerateLimit()
 {
-	SetTargetFPS(mMaxFrameRate);
 }

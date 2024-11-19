@@ -4,8 +4,6 @@
 
 class TimeManagerRaylib : public TimeManager
 {
-private :
-	int mMaxFrameRate;
 public : 
 	TimeManagerRaylib();
 	~TimeManagerRaylib();

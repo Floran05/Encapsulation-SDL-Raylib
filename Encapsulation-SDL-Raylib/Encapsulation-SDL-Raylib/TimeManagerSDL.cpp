@@ -3,9 +3,9 @@
 #include <SDL2/SDL.h>
 
 TimeManagerSDL::TimeManagerSDL()
-	: mMaxFramerate(-1)
-	, mTimeOnLastFrame(0.f)
+	: mTimeOnLastFrame(0.f)
 {
+	mMaxFrameRate = -1;
 }
 
 TimeManagerSDL::~TimeManagerSDL()
@@ -14,7 +14,7 @@ TimeManagerSDL::~TimeManagerSDL()
 
 void TimeManagerSDL::SetMaxFramerate(int Framerate)
 {
-	mMaxFramerate = Framerate;
+	mMaxFrameRate = Framerate;
 }
 
 float TimeManagerSDL::GetTime()
@@ -34,9 +34,9 @@ float TimeManagerSDL::GetElapsedTime()
 
 void TimeManagerSDL::ApplyFramerateLimit()
 {
-	if (mMaxFramerate < 1) return;
+	if (mMaxFrameRate < 1) return;
 
 	float elapsedTime = GetElapsedTime();
 
-	SDL_Delay(floor((1000.f / mMaxFramerate) - (elapsedTime * 1000)));
+	SDL_Delay(floor((1000.f / mMaxFrameRate) - (elapsedTime * 1000)));
 }

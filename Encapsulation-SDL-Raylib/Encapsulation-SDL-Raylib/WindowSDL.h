@@ -21,9 +21,11 @@ public:
 
 	virtual void InitLibrary() override;
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) override;
-	virtual void DrawEntity(Entity* Entity) override;
+
+	virtual void ProcessEvents() override;
 
 	virtual void BeginDraw() override;
+	virtual void DrawEntity(Entity* Entity) override;
 	virtual void EndDraw() override;
 
 	virtual void DestroyWindow() override;

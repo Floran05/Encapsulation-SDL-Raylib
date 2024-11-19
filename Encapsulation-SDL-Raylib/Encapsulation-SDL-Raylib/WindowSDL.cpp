@@ -5,7 +5,9 @@
 #include <SDL2/SDL_image.h>
 
 #include "Entity.h"
+#include "Game.h"
 #include "SpriteSDL.h"
+#include "ControllerSDL.h"
 
 WindowSDL::WindowSDL()
 	: mWindowSurface(nullptr)
@@ -65,6 +67,26 @@ void WindowSDL::CreateWindow(const std::string& WindowTitle, int Width, int Heig
 	}
 }
 
+void WindowSDL::ProcessEvents()
+{
+	SDL_Event ev;
+
+	ControllerSDL* controller = dynamic_cast<ControllerSDL*>(I(Game)->GetController());
+	controller->ResetPressedKeys();
+	while (SDL_PollEvent(&ev) != 0)
+	{
+		switch (ev.type)
+		{
+		case SDL_QUIT:
+			I(Game)->StopRunning();
+			break;
+		case SDL_KEYDOWN:
+			controller->AddKeyToListOfPressedKey(ev.key.keysym.sym);
+			break;
+		}
+	}
+}
+
 void WindowSDL::DrawEntity(Entity* Entity)
 {
 	if (!mWindowSurface) return;
@@ -74,6 +96,7 @@ void WindowSDL::DrawEntity(Entity* Entity)
 	targetPosition.y = static_cast<int>(Entity->GetPosition().y);
 
 	SpriteSDL* sdlSprite = dynamic_cast<SpriteSDL*>(Entity->GetSprite());
+	if (!sdlSprite) return;
 	int drawResult = SDL_BlitSurface(sdlSprite->GetImage(), NULL, mWindowSurface, &targetPosition);
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Singleton.h"
+#include <string>
 
 enum class ELibrary {
 	SDL,
@@ -8,6 +9,8 @@ enum class ELibrary {
 };
 
 class Window;
+class Controller;
+class TimeManager;
 
 class Game : public Singleton<Game>
 {
@@ -17,15 +20,27 @@ public:
 
 private:
 
+	bool mRunning;
+
 	ELibrary mSelectedLibrary;
 
 	Window* mWindow;
+	Controller* mController;
+	TimeManager* mTimeManager;
 
 public:
 
-	void Init(const ELibrary& Library);
+	Controller* GetController() const { return mController; }
+
+	void Init(
+		const ELibrary& Library, 
+		const std::string& WindowTitle, 
+		int WindowWidth, 
+		int WindowHeight, 
+		int MaxFramerate);
 
 	void Loop();
+	void StopRunning();
 
 };
 

@@ -10,8 +10,6 @@ public:
 	virtual ~TimeManagerSDL();
 
 private:
-
-	int mMaxFramerate;
 	float mTimeOnLastFrame;
 
 public:

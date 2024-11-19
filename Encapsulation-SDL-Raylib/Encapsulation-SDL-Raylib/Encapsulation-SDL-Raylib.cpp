@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 	}
 
 	Game* g = I(Game);
-	g->Init(selectedLibrary);
+	g->Init(selectedLibrary, "Encapsulation - SDL - Raylib", 1080, 720, 60);
 
 	system("pause");
 
