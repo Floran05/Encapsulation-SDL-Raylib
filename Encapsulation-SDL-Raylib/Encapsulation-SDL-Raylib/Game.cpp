@@ -15,6 +15,7 @@ Game::Game()
 	: mSelectedLibrary(ELibrary::SDL)
 	, mWindow(nullptr)
 	, mController(nullptr)
+	, mTimeManager(nullptr)
 {
 }
 
@@ -33,7 +34,7 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 	case ELibrary::Raylib:
 		mWindow = new WindowRaylib();
 		mTimeManager = new TimeManagerRaylib();
-		//mController = new ControllerRaylib();
+		mController = new ControllerRaylib();
 		mE = new EntityRaylib();
 		break;
 	default:
@@ -57,20 +58,14 @@ void Game::Loop()
 	{
 		mTimeManager->OnFrameStart();
 		mWindow->ProcessEvents();
-		
 
 		mWindow->BeginDraw();
-		// update balls
-		// update player
+
 		mWindow->DrawEntity(mE);
-		
 		mWindow->DrawText(std::to_string(static_cast<int>(round(1 / mTimeManager->GetElapsedTime())))+" FPS", 980, 50, 20);
-	
-		// draw
-		// draw fps
+		
 		mWindow->EndDraw();
 
-		mTimeManager->GetElapsedTime();
 		mTimeManager->ApplyFramerateLimit();
 	}
 

@@ -12,6 +12,7 @@
 WindowSDL::WindowSDL()
 	: mWindowSurface(nullptr)
 	, mWindow(nullptr)
+	, mFont(nullptr)
 	, mWindowOpen(true)
 {
 }
@@ -122,6 +123,7 @@ void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSi
 {
 	if (!mFont || !mWindowSurface) return;
 	SDL_Surface* textSurface = TTF_RenderText_Solid(mFont, Text.c_str(), { 255, 255, 255 });
+	TTF_SetFontSize(mFont, FontSize);
 	SDL_Rect targetPosition;
 	targetPosition.x = PosX;
 	targetPosition.y = PosY;
@@ -150,6 +152,15 @@ void WindowSDL::DestroyWindow()
 	SDL_Quit();
 	IMG_Quit();
 	TTF_Quit();
+}
+
+Custom::Vector2f WindowSDL::GetWindowSize()
+{
+	if (!mWindow) return Custom::Vector2f();
+	int width = 0;
+	int height = 0;
+	SDL_GetWindowSize(mWindow, &width, &height);
+	return Custom::Vector2f(width, height);
 }
 
 

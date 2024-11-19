@@ -26,3 +26,10 @@ bool SpriteSDL::Load(const std::string& PathToFile)
 
 	return true;
 }
+
+Custom::Vector2<int> SpriteSDL::GetSize()
+{
+	if (!mImage) return Custom::Vector2<int>();
+
+	return Custom::Vector2<int>(mImage->w, mImage->h);
+}

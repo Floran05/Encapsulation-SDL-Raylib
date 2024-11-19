@@ -18,6 +18,7 @@ private:
 public:
 
 	virtual bool Load(const std::string& PathToFile) override;
+	virtual Custom::Vector2<int> GetSize() override;
 
 	virtual SDL_Surface* GetImage() const { return mImage; }
 

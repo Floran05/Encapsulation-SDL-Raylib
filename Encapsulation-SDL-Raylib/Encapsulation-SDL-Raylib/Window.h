@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Vector2.h"
 
 class Entity;
 
@@ -20,6 +21,8 @@ public:
 	virtual void EndDraw() = 0;
 
 	virtual void DestroyWindow() = 0;
+
+	virtual Custom::Vector2f GetWindowSize() = 0;
 
 };
 

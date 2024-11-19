@@ -8,9 +8,16 @@ int main(int argc, char* argv[])
 {
 	ELibrary selectedLibrary = ELibrary::SDL;
 
-	if (argc > 1 && argv[1] == "-raylib")
+	if (argc > 1)
 	{
-		selectedLibrary = ELibrary::Raylib;
+		if (argv[1] == "-raylib")
+		{
+			selectedLibrary = ELibrary::Raylib;
+		}
+		else if (argv[1] == "-sdl")
+		{
+			selectedLibrary = ELibrary::SDL;
+		}
 	}
 
 	Game* g = I(Game);

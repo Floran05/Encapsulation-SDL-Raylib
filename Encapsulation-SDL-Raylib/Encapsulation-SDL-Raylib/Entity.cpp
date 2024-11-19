@@ -12,6 +12,6 @@ Entity::~Entity()
 {
 }
 
-void Entity::Move()
+void Entity::Move(float X, float Y)
 {
 }

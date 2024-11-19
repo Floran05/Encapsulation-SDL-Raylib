@@ -37,5 +37,7 @@ public:
 
 	virtual void DestroyWindow() override;
 
+	virtual Custom::Vector2f GetWindowSize() override;
+
 };
 
