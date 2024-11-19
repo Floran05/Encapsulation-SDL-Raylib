@@ -2,6 +2,8 @@
 
 #include "Window.h"
 
+#include <SDL2/SDL_ttf.h>
+
 struct SDL_Surface;
 struct SDL_Window;
 
@@ -16,6 +18,7 @@ private:
 
 	SDL_Surface* mWindowSurface;
 	SDL_Window* mWindow;
+	TTF_Font* mFont;
 
 	bool mWindowOpen;
 

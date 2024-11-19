@@ -3,7 +3,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
 
 #include "Entity.h"
 #include "Game.h"
@@ -49,6 +48,8 @@ void WindowSDL::InitLibrary()
 		system("pause");
 		exit(1);
 	}
+
+	mFont = TTF_OpenFont("C:\\Users\\fcarvalho\\Pictures\\Boulenoel.ttf", 180);
 }
 
 void WindowSDL::CreateWindow(const std::string& WindowTitle, int Width, int Height)
@@ -119,8 +120,13 @@ void WindowSDL::DrawEntity(Entity* Entity)
 
 void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSize)
 {
-	//TTF_Text txt()
-	//TTF_DrawSurfaceText()
+	if (!mFont || !mWindowSurface) return;
+	SDL_Surface* textSurface = TTF_RenderText_Solid(mFont, Text.c_str(), { 255, 255, 255 });
+	SDL_Rect targetPosition;
+	targetPosition.x = PosX;
+	targetPosition.y = PosY;
+	int drawResult = SDL_BlitSurface(textSurface, NULL, mWindowSurface, &targetPosition);
+	SDL_FreeSurface(textSurface);
 }
 
 void WindowSDL::BeginDraw()
