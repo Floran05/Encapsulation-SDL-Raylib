@@ -29,13 +29,11 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 		mWindow = new WindowSDL();
 		mTimeManager = new TimeManagerSDL();
 		mController = new ControllerSDL();
-		mE = new EntitySDL();
 		break;
 	case ELibrary::Raylib:
 		mWindow = new WindowRaylib();
 		mTimeManager = new TimeManagerRaylib();
 		mController = new ControllerRaylib();
-		mE = new EntityRaylib();
 		break;
 	default:
 		std::cerr << "Bad library selected. Exiting..." << std::endl;
@@ -60,10 +58,7 @@ void Game::Loop()
 		mWindow->ProcessEvents();
 
 		mWindow->BeginDraw();
-
-		mWindow->DrawEntity(mE);
 		mWindow->DrawText(std::to_string(static_cast<int>(round(1 / mTimeManager->GetElapsedTime())))+" FPS", 980, 50, 20);
-		
 		mWindow->EndDraw();
 
 		mTimeManager->ApplyFramerateLimit();

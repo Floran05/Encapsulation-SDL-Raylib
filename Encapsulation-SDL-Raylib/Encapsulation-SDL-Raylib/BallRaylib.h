@@ -1,11 +1,10 @@
 #pragma once
-#include "Entity.h"
-class EntityRaylib : public Entity
+#include "Ball.h"
+class BallRaylib : public Ball
 {
 public:
-
-	EntityRaylib();
-	virtual ~EntityRaylib();
+	BallRaylib();
+	virtual ~BallRaylib();
 
 public:
 

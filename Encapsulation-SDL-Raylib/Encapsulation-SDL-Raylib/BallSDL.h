@@ -1,15 +1,15 @@
 #pragma once
-#include "Entity.h"
-class EntitySDL : public Entity
+#include "Ball.h"
+class BallSDL : public Ball
 {
 public:
-
-	EntitySDL();
-	virtual ~EntitySDL();
+	BallSDL();
+	virtual ~BallSDL();
 
 public:
 
 	virtual void Init(const std::string& PathToTexture) override;
+
 
 };
 
