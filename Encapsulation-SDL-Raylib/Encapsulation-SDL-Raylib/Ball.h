@@ -10,6 +10,6 @@ public:
 	~Ball();
 	void Update();
 	void CheckCollision();
-	//void Draw();
+	
 };
 

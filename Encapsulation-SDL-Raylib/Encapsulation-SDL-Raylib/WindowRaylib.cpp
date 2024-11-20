@@ -61,3 +61,14 @@ void WindowRaylib::DestroyWindow()
 {
 	CloseWindow();
 }
+
+Custom::Vector2f WindowRaylib::GetWindowSize()
+{
+	
+	if (!IsWindowReady()) { return Custom::Vector2f(); }
+	int width = 0;
+	int height = 0;
+	width = GetScreenWidth();
+	height = GetScreenHeight();
+	return Custom::Vector2f(width,height);
+}

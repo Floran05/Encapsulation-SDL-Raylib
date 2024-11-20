@@ -19,5 +19,5 @@ public:
 	virtual void EndDraw() override;
 	virtual void DrawText(const std::string& Text , int PosX , int PosY , int FontSize) override;
 	virtual void DestroyWindow() override;
+	virtual Custom::Vector2f GetWindowSize() override;
 };
-

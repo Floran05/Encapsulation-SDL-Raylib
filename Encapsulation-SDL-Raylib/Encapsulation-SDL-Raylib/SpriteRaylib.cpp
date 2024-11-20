@@ -24,3 +24,9 @@ Texture2D SpriteRaylib::GetTexture()
 {
 	return mImage;
 }
+
+Custom::Vector2<int> SpriteRaylib::GetSize()
+{
+	if (mImage.id == 0) { return Custom::Vector2<int>(); }
+	return Custom::Vector2<int>(mImage.width, mImage.height);
+}

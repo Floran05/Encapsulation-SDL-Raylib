@@ -11,7 +11,8 @@ public:
 
 	SpriteRaylib();
 	~SpriteRaylib();
-	bool Load(const std::string& PathToFile) override;
-	Texture2D GetTexture();
+	virtual bool Load(const std::string& PathToFile) override;
+	virtual Texture2D GetTexture();
+	virtual Custom::Vector2<int> GetSize() override;
 };
 
