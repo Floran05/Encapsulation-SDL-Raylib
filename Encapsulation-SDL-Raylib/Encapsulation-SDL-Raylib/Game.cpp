@@ -6,8 +6,6 @@
 #include "WindowRaylib.h"
 #include "TimeManagerSDL.h"
 #include "TimeManagerRaylib.h"
-#include "EntitySDL.h"
-#include "EntityRaylib.h"
 #include "ControllerSDL.h"
 #include "ControllerRaylib.h"
 
@@ -46,8 +44,6 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 	mWindow->CreateWindow(WindowTitle, WindowWidth, WindowHeight);
 
 	mTimeManager->SetMaxFramerate(MaxFramerate);
-
-	mE->Init("C:\\Users\\L3iith\\Desktop\\ball.png");
 }
 
 void Game::Loop()
