@@ -30,6 +30,7 @@ public:
 
 	virtual void Init(const std::string& PathToTexture) = 0;
 
+	virtual void Update() = 0;
 	virtual void Move(float X, float Y);
 
 };
