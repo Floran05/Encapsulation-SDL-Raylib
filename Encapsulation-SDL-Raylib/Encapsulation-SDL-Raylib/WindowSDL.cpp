@@ -86,6 +86,13 @@ bool WindowSDL::IsWindowOpen()
 	return mWindowOpen;
 }
 
+Sprite* WindowSDL::CreateSprite(const std::string& PathToTexture)
+{
+	SpriteSDL* sprite = new SpriteSDL();
+	sprite->Load(PathToTexture);
+	return sprite;
+}
+
 void WindowSDL::ProcessEvents()
 {
 	SDL_Event ev;
@@ -133,6 +140,7 @@ void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSi
 
 void WindowSDL::BeginDraw()
 {
+	SDL_FillRect(mWindowSurface, NULL, SDL_MapRGB(mWindowSurface->format, 0, 0, 0));
 }
 
 void WindowSDL::EndDraw()

@@ -2,6 +2,7 @@
 
 #include "Singleton.h"
 #include <string>
+#include <list>
 
 enum class ELibrary {
 	SDL,
@@ -11,6 +12,7 @@ enum class ELibrary {
 class Window;
 class Controller;
 class TimeManager;
+class Player;
 class Entity;
 
 class Game : public Singleton<Game>
@@ -27,7 +29,7 @@ private:
 	Controller* mController;
 	TimeManager* mTimeManager;
 
-	Entity* mE;
+	std::list<Entity*> mEntities;
 
 public:
 

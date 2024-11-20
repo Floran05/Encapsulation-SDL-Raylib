@@ -28,7 +28,7 @@ public:
 	Custom::Vector2f GetPosition() const { return mPosition; }
 	Custom::Vector2f GetDirection() const { return mDirection; }
 
-	virtual void Init(const std::string& PathToTexture) = 0;
+	virtual void Init(Sprite* sprite);
 
 	virtual void Update() = 0;
 	virtual void Move(float X, float Y);

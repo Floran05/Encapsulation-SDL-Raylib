@@ -28,13 +28,20 @@ bool WindowRaylib::IsWindowOpen()
 	return !WindowShouldClose();
 }
 
+Sprite* WindowRaylib::CreateSprite(const std::string& PathToTexture)
+{
+	SpriteRaylib* sprite = new SpriteRaylib();
+	sprite->Load(PathToTexture);
+	return sprite;
+}
+
 void WindowRaylib::DrawEntity(Entity* Entity)
 {
 	Vector2 Position;
 	Position.x = Entity->GetPosition().x;
 	Position.y = Entity->GetPosition().y;
 	SpriteRaylib* sprite = dynamic_cast<SpriteRaylib*>(Entity->GetSprite());
-	DrawTexture(sprite->GetTexture(), 0, 0, WHITE);
+	DrawTexture(sprite->GetTexture(), Position.x, Position.y, WHITE);
 }
 
 void WindowRaylib::ProcessEvents()

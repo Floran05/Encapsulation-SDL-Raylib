@@ -8,6 +8,7 @@
 #include "TimeManagerRaylib.h"
 #include "ControllerSDL.h"
 #include "ControllerRaylib.h"
+#include "Player.h"
 
 Game::Game()
 	: mSelectedLibrary(ELibrary::SDL)
@@ -44,6 +45,11 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 	mWindow->CreateWindow(WindowTitle, WindowWidth, WindowHeight);
 
 	mTimeManager->SetMaxFramerate(MaxFramerate);
+
+
+	//mE->Init("C:\\Users\\carva\\Documents\\GTech\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\ball.png");
+	//mE->SetControlKeys(SDLK_UP, SDLK_DOWN);
+	//mE->SetControlKeys(KEY_UP, KEY_DOWN);
 }
 
 void Game::Loop()
@@ -52,9 +58,17 @@ void Game::Loop()
 	{
 		mTimeManager->OnFrameStart();
 		mWindow->ProcessEvents();
+		for (std::list<Entity*>::iterator it = mEntities.begin(); it != mEntities.end(); ++it)
+		{
+			(*it)->Update();
+		}
 
 		mWindow->BeginDraw();
 		mWindow->DrawText(std::to_string(static_cast<int>(round(1 / mTimeManager->GetElapsedTime())))+" FPS", 980, 50, 20);
+		for (std::list<Entity*>::iterator it = mEntities.begin(); it != mEntities.end(); ++it)
+		{
+			mWindow->DrawEntity(*it);
+		}
 		mWindow->EndDraw();
 
 		mTimeManager->ApplyFramerateLimit();

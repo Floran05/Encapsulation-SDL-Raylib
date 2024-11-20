@@ -144,8 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="BallRaylib.cpp" />
-    <ClCompile Include="BallSDL.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="ControllerRaylib.cpp" />
     <ClCompile Include="ControllerSDL.cpp" />
@@ -153,8 +151,6 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerRaylib.cpp" />
-    <ClCompile Include="PlayerSDL.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRaylib.cpp" />
@@ -168,16 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
-    <ClInclude Include="BallRaylib.h" />
-    <ClInclude Include="BallSDL.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="ControllerRaylib.h" />
     <ClInclude Include="ControllerSDL.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerRaylib.h" />
-    <ClInclude Include="PlayerSDL.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRaylib.h" />

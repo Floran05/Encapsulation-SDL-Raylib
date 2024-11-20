@@ -27,6 +27,7 @@ public:
 	virtual void InitLibrary() override;
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) override;
 	virtual bool IsWindowOpen() override;
+	virtual Sprite* CreateSprite(const std::string& PathToTexture) override;
 
 	virtual void ProcessEvents() override;
 
