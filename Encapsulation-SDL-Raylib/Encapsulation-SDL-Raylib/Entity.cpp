@@ -17,9 +17,10 @@ Entity::~Entity()
 {
 }
 
-void Entity::Init(Sprite* sprite)
+void Entity::Init(Sprite* sprite, const Custom::Vector2f& InitialPosition)
 {
 	mSprite = sprite;
+	mPosition = InitialPosition;
 }
 
 void Entity::Move(float X, float Y)
@@ -27,13 +28,16 @@ void Entity::Move(float X, float Y)
 	const float deltaTime = I(Game)->GetTimeManager()->GetElapsedTime();
 	mPosition += Custom::Vector2f(X * deltaTime * mSpeedMultiplier, Y * deltaTime * mSpeedMultiplier);
 	mDirection = Custom::Vector2f(X, Y);
+
+	std::cout << mPosition.x << " | " << mPosition.y << std::endl;
 }
 
 bool Entity::CheckCollision(Entity* Target)
 {
+	if (this == Target) return false;
+
 	bool overlapX = mPosition.x < Target->GetPosition().x + Target->GetSprite()->GetSize().x && mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
 	bool overlapY = mPosition.y < Target->GetPosition().y + Target->GetSprite()->GetSize().y && mPosition.x + mSprite->GetSize().y > Target->GetPosition().y;
-
 	
 	return overlapX && overlapY;
 }

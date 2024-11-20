@@ -5,6 +5,18 @@
 #include "Window.h"
 #include "Sprite.h"
 
+Player::Player()
+	: mPoints(0)
+	, mUpKey(0)
+	, mDownKey(0)
+{
+	mSpeedMultiplier = 1000.f;
+}
+
+Player::~Player()
+{
+}
+
 void Player::SetControlKeys(int UpKey, int DownKey)
 {
 	mUpKey = UpKey;

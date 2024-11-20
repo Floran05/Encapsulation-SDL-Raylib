@@ -4,6 +4,8 @@
 #include <string>
 #include <list>
 
+#define INCREMENT_POINTS 1
+
 enum class ELibrary {
 	SDL,
 	Raylib
@@ -14,6 +16,7 @@ class Controller;
 class TimeManager;
 class Player;
 class Entity;
+class Ball;
 
 class Game : public Singleton<Game>
 {
@@ -28,6 +31,10 @@ private:
 	Window* mWindow;
 	Controller* mController;
 	TimeManager* mTimeManager;
+
+	Player* mPlayerLeft;
+	Player* mPlayerRight;
+	Ball* mBall;
 
 	std::list<Entity*> mEntities;
 
@@ -44,6 +51,8 @@ public:
 		int MaxFramerate);
 
 	void Loop();
+
+	void OnGoal(bool leftSide);
 	
 };
 

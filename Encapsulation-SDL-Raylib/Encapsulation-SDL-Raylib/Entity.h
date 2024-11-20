@@ -27,8 +27,9 @@ public:
 	Sprite* GetSprite() const { return mSprite; }
 	Custom::Vector2f GetPosition() const { return mPosition; }
 	Custom::Vector2f GetDirection() const { return mDirection; }
+	void SetDirection(const Custom::Vector2f& direction) { mDirection = direction; }
 
-	virtual void Init(Sprite* sprite);
+	virtual void Init(Sprite* sprite, const Custom::Vector2f& InitialPosition = {0.f, 0.f});
 
 	virtual void Update() = 0;
 	virtual void Move(float X, float Y);
