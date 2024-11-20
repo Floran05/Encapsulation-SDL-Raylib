@@ -2,7 +2,7 @@
 
 #include "Game.h"
 #include "TimeManager.h"
-
+#include"Sprite.h"
 #include <iostream>
 
 Entity::Entity()
@@ -29,6 +29,11 @@ void Entity::Move(float X, float Y)
 	mDirection = Custom::Vector2f(X, Y);
 }
 
-void Entity::CheckCollision(Entity* Target)
+bool Entity::CheckCollision(Entity* Target)
 {
+	bool overlapX = mPosition.x < Target->GetPosition().x + Target->GetSprite()->GetSize().x && mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
+	bool overlapY = mPosition.y < Target->GetPosition().y + Target->GetSprite()->GetSize().y && mPosition.x + mSprite->GetSize().y > Target->GetPosition().y;
+
+	
+	return overlapX && overlapY;
 }

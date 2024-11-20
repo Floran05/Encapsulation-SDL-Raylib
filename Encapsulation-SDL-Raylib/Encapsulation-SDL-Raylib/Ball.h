@@ -4,12 +4,13 @@
 
 class Ball : public Entity
 {
-
+private :
+	bool IsColliding;
 public:
 	Ball();
 	~Ball();
 	void Update();
-	void CheckCollision();
+	void OnCollideWithPlayer() { IsColliding = true; }
 	
 };
 
