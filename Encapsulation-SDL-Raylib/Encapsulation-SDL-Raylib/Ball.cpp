@@ -6,7 +6,7 @@
 Ball::Ball()
 {
 	IsColliding = false;
-	mSpeedMultiplier = 500.f;
+	mSpeedMultiplier = INITIAL_SPEED;
 }
 
 Ball::~Ball()
@@ -23,6 +23,7 @@ void Ball::Update()
 	}
 	if (IsColliding) {
 		Move(-mDirection.x, mDirection.y);
+		mSpeedMultiplier *= 1.2;
 		IsColliding = false;
 	}
 	if (mPosition.x - mSprite->GetSize().x < 0) {
@@ -37,7 +38,9 @@ void Ball::Update()
 
 void Ball::ResetPosition()
 {
-	mPosition = { (I(Game)->GetWindow()->GetWindowSize().x / 2.f) - (mSprite->GetSize().x / 2.f), ((I(Game)->GetWindow()->GetWindowSize().y / 2.f) + (mSprite->GetSize().y / 2.f)) };
+	mSpeedMultiplier = INITIAL_SPEED;
+	const float randAngle = rand() * 1.f / RAND_MAX;
+	mPosition = { (I(Game)->GetWindow()->GetWindowSize().x * 0.5f) - (mSprite->GetSize().x * 0.5f), ((I(Game)->GetWindow()->GetWindowSize().y * 0.5f) + (mSprite->GetSize().y * 0.5f)) };
 }
 
 

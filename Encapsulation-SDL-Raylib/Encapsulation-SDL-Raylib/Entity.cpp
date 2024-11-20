@@ -28,8 +28,6 @@ void Entity::Move(float X, float Y)
 	const float deltaTime = I(Game)->GetTimeManager()->GetElapsedTime();
 	mPosition += Custom::Vector2f(X * deltaTime * mSpeedMultiplier, Y * deltaTime * mSpeedMultiplier);
 	mDirection = Custom::Vector2f(X, Y);
-
-	
 }
 
 bool Entity::CheckCollision(Entity* Target)
@@ -41,9 +39,9 @@ bool Entity::CheckCollision(Entity* Target)
 	}
 
 	bool overlapX = mPosition.x < Target->GetPosition().x + Target->GetSprite()->GetSize().x &&
-		mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
+					mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
 	bool overlapY = mPosition.y < Target->GetPosition().y + Target->GetSprite()->GetSize().y &&
-		mPosition.y + mSprite->GetSize().y > Target->GetPosition().y;
+					mPosition.y + mSprite->GetSize().y > Target->GetPosition().y;
 
 	if (overlapX && overlapY) {
 		OldTarget = Target; 

@@ -2,6 +2,8 @@
 
 #include "Entity.h"
 
+#define INITIAL_SPEED 500.f
+
 class Ball : public Entity
 {
 private :

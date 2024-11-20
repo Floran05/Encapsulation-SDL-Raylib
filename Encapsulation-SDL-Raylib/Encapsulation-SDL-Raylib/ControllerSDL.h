@@ -19,7 +19,8 @@ public:
 
 	virtual bool IsKeyDown(int Key) override;
 
-	virtual void AddKeyToListOfPressedKey(int Key);
+	virtual void AddKeyToListOfPressedKeys(int Key);
+	virtual void RemoveKeyFromListOfPressedKeys(int Key);
 	virtual void ResetPressedKeys();
 
 };

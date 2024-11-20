@@ -12,5 +12,6 @@ public :
 	void OnFrameStart() override;
 	float GetElapsedTime() override; 
 	void ApplyFramerateLimit() override;
+	float GetFramerate() override;
 };
 

@@ -10,8 +10,8 @@
 #include "ControllerSDL.h"
 
 WindowSDL::WindowSDL()
-	: mWindowSurface(nullptr)
-	, mWindow(nullptr)
+	: mWindow(nullptr)
+	, mRenderer(nullptr)
 	, mFont(nullptr)
 	, mWindowOpen(true)
 {
@@ -19,7 +19,8 @@ WindowSDL::WindowSDL()
 
 WindowSDL::~WindowSDL()
 {
-	delete mWindowSurface;
+	delete mFont;
+	delete mRenderer;
 	delete mWindow;
 }
 
@@ -49,8 +50,6 @@ void WindowSDL::InitLibrary()
 		system("pause");
 		exit(1);
 	}
-
-	mFont = TTF_OpenFont("C:\\Users\\fcarvalho\\Pictures\\Boulenoel.ttf", 180);
 }
 
 void WindowSDL::CreateWindow(const std::string& WindowTitle, int Width, int Height)
@@ -71,11 +70,10 @@ void WindowSDL::CreateWindow(const std::string& WindowTitle, int Width, int Heig
 		exit(1);
 	}
 
-	mWindowSurface = SDL_GetWindowSurface(mWindow);
-	
-	if (!mWindowSurface)
+	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
+	if (!mRenderer)
 	{
-		std::cerr << "Error getting surface: " << SDL_GetError() << std::endl;
+		std::cerr << "Error creating renderer: " << SDL_GetError() << std::endl;
 		system("pause");
 		exit(1);
 	}
@@ -88,9 +86,17 @@ bool WindowSDL::IsWindowOpen()
 
 Sprite* WindowSDL::CreateSprite(const std::string& PathToTexture)
 {
+	if (!mRenderer) return nullptr;
+
 	SpriteSDL* sprite = new SpriteSDL();
+	sprite->SetRenderer(mRenderer);
 	sprite->Load(PathToTexture);
 	return sprite;
+}
+
+void WindowSDL::LoadFont(const std::string& PathToFontFile)
+{
+	mFont = TTF_OpenFont(PathToFontFile.c_str(), 70);
 }
 
 void WindowSDL::ProcessEvents()
@@ -98,7 +104,6 @@ void WindowSDL::ProcessEvents()
 	SDL_Event ev;
 
 	ControllerSDL* controller = dynamic_cast<ControllerSDL*>(I(Game)->GetController());
-	controller->ResetPressedKeys();
 	while (SDL_PollEvent(&ev) != 0)
 	{
 		switch (ev.type)
@@ -107,7 +112,10 @@ void WindowSDL::ProcessEvents()
 			mWindowOpen = false;
 			break;
 		case SDL_KEYDOWN:
-			controller->AddKeyToListOfPressedKey(ev.key.keysym.sym);
+			controller->AddKeyToListOfPressedKeys(ev.key.keysym.sym);
+			break;
+		case SDL_KEYUP:
+			controller->RemoveKeyFromListOfPressedKeys(ev.key.keysym.sym);
 			break;
 		}
 	}
@@ -115,47 +123,61 @@ void WindowSDL::ProcessEvents()
 
 void WindowSDL::DrawEntity(Entity* Entity)
 {
-	if (!mWindowSurface) return;
-
-	SDL_Rect targetPosition;
-	targetPosition.x = static_cast<int>(Entity->GetPosition().x);
-	targetPosition.y = static_cast<int>(Entity->GetPosition().y);
-
+	if (!mWindow || !mRenderer) return;
 	SpriteSDL* sdlSprite = dynamic_cast<SpriteSDL*>(Entity->GetSprite());
 	if (!sdlSprite) return;
-	int drawResult = SDL_BlitSurface(sdlSprite->GetImage(), NULL, mWindowSurface, &targetPosition);
+
+	SDL_Rect targetRect;
+	targetRect.x = static_cast<int>(Entity->GetPosition().x);
+	targetRect.y = static_cast<int>(Entity->GetPosition().y);
+	targetRect.w = sdlSprite->GetSize().x;
+	targetRect.h = sdlSprite->GetSize().y;
+
+	SDL_RenderCopy(mRenderer, sdlSprite->GetTexture(), NULL, &targetRect);
 }
 
 void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSize)
 {
-	if (!mFont || !mWindowSurface) return;
+	if (!mFont || !mRenderer) return;
 	SDL_Surface* textSurface = TTF_RenderText_Solid(mFont, Text.c_str(), { 255, 255, 255 });
 	TTF_SetFontSize(mFont, FontSize);
 	SDL_Rect targetPosition;
 	targetPosition.x = PosX;
 	targetPosition.y = PosY;
-	int drawResult = SDL_BlitSurface(textSurface, NULL, mWindowSurface, &targetPosition);
+	targetPosition.w = 100;
+	targetPosition.h = 50;
+	
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(mRenderer, textSurface);
 	SDL_FreeSurface(textSurface);
+	if (!texture)
+	{
+		std::cerr << "Error creating texture : " << SDL_GetError() << std::endl;
+		return;
+	}
+
+	SDL_RenderCopy(mRenderer, texture, NULL, &targetPosition);
+	SDL_DestroyTexture(texture);
 }
 
 void WindowSDL::BeginDraw()
 {
-	SDL_FillRect(mWindowSurface, NULL, SDL_MapRGB(mWindowSurface->format, 0, 0, 0));
+	if (!mWindow || !mRenderer) return;
+	SDL_RenderClear(mRenderer);
 }
 
 void WindowSDL::EndDraw()
 {
-	if (!mWindow || !mWindowSurface) return;
-
-	SDL_UpdateWindowSurface(mWindow);
+	if (!mWindow || !mRenderer) return;
+	SDL_RenderPresent(mRenderer);
 }
 
 void WindowSDL::DestroyWindow()
 {
 	if (!mWindow) return;
 	SDL_DestroyWindow(mWindow);
+	SDL_DestroyRenderer(mRenderer);
 	mWindow = nullptr;
-	mWindowSurface = nullptr;
+	mRenderer = nullptr;
 
 	SDL_Quit();
 	IMG_Quit();

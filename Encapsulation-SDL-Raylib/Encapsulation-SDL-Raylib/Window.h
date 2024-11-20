@@ -14,6 +14,7 @@ public:
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) = 0;
 	virtual bool IsWindowOpen() = 0;
 	virtual Sprite* CreateSprite(const std::string& PathToTexture) = 0;
+	virtual void LoadFont(const std::string& PathToFontFile) = 0;
 
 	virtual void ProcessEvents() = 0;
 	

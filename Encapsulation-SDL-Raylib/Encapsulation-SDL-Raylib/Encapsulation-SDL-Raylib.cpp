@@ -3,9 +3,13 @@
 #include "Game.h"
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 int main(int argc, char* argv[])
 {
+	srand(time(NULL));
+
 	ELibrary selectedLibrary = ELibrary::Raylib;
 
 	if (argc > 1)
@@ -21,7 +25,7 @@ int main(int argc, char* argv[])
 	}
 
 	Game* g = I(Game);
-	g->Init(selectedLibrary, "Encapsulation - SDL - Raylib", 1080, 720, 60);
+	g->Init(selectedLibrary, "Encapsulation - SDL - Raylib", 1080, 720, 144);
 	g->Loop();
 
 	//system("pause");

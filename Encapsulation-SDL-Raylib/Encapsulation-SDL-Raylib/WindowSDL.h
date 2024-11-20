@@ -16,8 +16,8 @@ public:
 
 private:
 
-	SDL_Surface* mWindowSurface;
 	SDL_Window* mWindow;
+	SDL_Renderer* mRenderer;
 	TTF_Font* mFont;
 
 	bool mWindowOpen;
@@ -28,6 +28,7 @@ public:
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) override;
 	virtual bool IsWindowOpen() override;
 	virtual Sprite* CreateSprite(const std::string& PathToTexture) override;
+	virtual void LoadFont(const std::string& PathToFontFile) override;
 
 	virtual void ProcessEvents() override;
 

@@ -10,5 +10,7 @@ public:
 	virtual float GetElapsedTime() = 0;
 	virtual void ApplyFramerateLimit() = 0;
 
+	virtual float GetFramerate() = 0;
+
 };
 

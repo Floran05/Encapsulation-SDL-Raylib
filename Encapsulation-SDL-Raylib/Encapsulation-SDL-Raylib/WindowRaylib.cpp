@@ -35,6 +35,10 @@ Sprite* WindowRaylib::CreateSprite(const std::string& PathToTexture)
 	return sprite;
 }
 
+void WindowRaylib::LoadFont(const std::string& PathToFontFile)
+{
+}
+
 void WindowRaylib::DrawEntity(Entity* Entity)
 {
 	Vector2 Position;

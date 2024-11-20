@@ -1,5 +1,7 @@
 #include "TimeManagerRaylib.h"
 #include "raylib.h"
+#include <math.h>
+
 TimeManagerRaylib::TimeManagerRaylib()
 {
 	mMaxFrameRate = 0;
@@ -31,4 +33,10 @@ float TimeManagerRaylib::GetElapsedTime()
 
 void TimeManagerRaylib::ApplyFramerateLimit()
 {
+}
+
+float TimeManagerRaylib::GetFramerate()
+{
+	float frameTime = GetFrameTime();
+	return frameTime > 0.f ? round(1.f / frameTime) : 0.f;
 }
