@@ -26,6 +26,9 @@ void Entity::Move(float X, float Y)
 {
 	const float deltaTime = I(Game)->GetTimeManager()->GetElapsedTime();
 	mPosition += Custom::Vector2f(X * deltaTime * mSpeedMultiplier, Y * deltaTime * mSpeedMultiplier);
+	mDirection = Custom::Vector2f(X, Y);
+}
 
-	std::cout << mPosition.x << " | " << mPosition.y << std::endl;
+void Entity::CheckCollision(Entity* Target)
+{
 }

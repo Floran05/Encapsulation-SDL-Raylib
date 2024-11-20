@@ -32,6 +32,7 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Move(float X, float Y);
+	virtual void CheckCollision(Entity* Target);
 
 };
 
