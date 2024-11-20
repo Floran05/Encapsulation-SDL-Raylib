@@ -58,16 +58,16 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 
 	mTimeManager->SetMaxFramerate(MaxFramerate);
 
-	Sprite* playerLeftSprite = mWindow->CreateSprite("C:\\Users\\carva\\Documents\\GTech\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Computer.png");
-	Sprite* playerRightSprite = mWindow->CreateSprite("C:\\Users\\carva\\Documents\\GTech\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Player.png");
+	Sprite* playerLeftSprite = mWindow->CreateSprite("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Computer.png");
+	Sprite* playerRightSprite = mWindow->CreateSprite("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Player.png");
 	mPlayerLeft->Init(playerLeftSprite, { 50, (WindowHeight / 2.f) - (playerLeftSprite->GetSize().y / 2.f) });
 	mPlayerRight->Init(playerRightSprite, { WindowWidth - 50.f - playerRightSprite->GetSize().x, (WindowHeight / 2.f) - (playerLeftSprite->GetSize().y / 2.f) });
 	mEntities.emplace_back(mPlayerLeft);
 	mEntities.emplace_back(mPlayerRight);
 
-	Sprite* ballSprite = mWindow->CreateSprite("C:\\Users\\carva\\Documents\\GTech\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Ball.png");
+	Sprite* ballSprite = mWindow->CreateSprite("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\ball.png");
 	mBall->Init(ballSprite, { (WindowWidth / 2.f) - (ballSprite->GetSize().x / 2.f), (WindowHeight / 2.f) + (ballSprite->GetSize().y / 2.f) });
-	mBall->SetDirection({ 0.1f, 0.5f });
+	mBall->SetDirection({ 0.5f, 0.5f });
 	mEntities.emplace_back(mBall);
 }
 
@@ -86,7 +86,8 @@ void Game::Loop()
 
 				if ((*it)->CheckCollision(*subIt))
 				{
-					if (Ball* ball = dynamic_cast<Ball*>(*it))
+					
+					if (Ball* ball = dynamic_cast<Ball*>(*subIt))
 					{
 						ball->OnCollideWithPlayer();
 					}
@@ -94,8 +95,11 @@ void Game::Loop()
 					{
 						ball->OnCollideWithPlayer();
 					}
+					
 				}
+				
 			}
+			
 		}
 
 		mWindow->BeginDraw();

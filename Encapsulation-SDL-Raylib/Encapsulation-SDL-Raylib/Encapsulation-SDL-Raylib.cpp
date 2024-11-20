@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[])
 {
-	ELibrary selectedLibrary = ELibrary::SDL;
+	ELibrary selectedLibrary = ELibrary::Raylib;
 
 	if (argc > 1)
 	{

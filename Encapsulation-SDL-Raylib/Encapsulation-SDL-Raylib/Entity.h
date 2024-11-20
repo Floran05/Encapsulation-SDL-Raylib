@@ -21,7 +21,7 @@ protected:
 	Custom::Vector2f mDirection;
 
 	float mSpeedMultiplier;
-
+	Entity* OldTarget = nullptr;
 public:
 
 	Sprite* GetSprite() const { return mSprite; }
@@ -34,6 +34,6 @@ public:
 	virtual void Update() = 0;
 	virtual void Move(float X, float Y);
 	virtual bool CheckCollision(Entity* Target);
-
+	
 };
 

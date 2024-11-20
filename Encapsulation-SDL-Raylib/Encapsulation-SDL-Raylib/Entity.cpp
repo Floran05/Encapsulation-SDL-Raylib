@@ -29,15 +29,28 @@ void Entity::Move(float X, float Y)
 	mPosition += Custom::Vector2f(X * deltaTime * mSpeedMultiplier, Y * deltaTime * mSpeedMultiplier);
 	mDirection = Custom::Vector2f(X, Y);
 
-	std::cout << mPosition.x << " | " << mPosition.y << std::endl;
+	
 }
 
 bool Entity::CheckCollision(Entity* Target)
 {
-	if (this == Target) return false;
+	if (this == Target) return false; 
+	if (Target == OldTarget) {
+		OldTarget = nullptr;
+		return false;
+	}
 
-	bool overlapX = mPosition.x < Target->GetPosition().x + Target->GetSprite()->GetSize().x && mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
-	bool overlapY = mPosition.y < Target->GetPosition().y + Target->GetSprite()->GetSize().y && mPosition.x + mSprite->GetSize().y > Target->GetPosition().y;
+	bool overlapX = mPosition.x < Target->GetPosition().x + Target->GetSprite()->GetSize().x &&
+		mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
+	bool overlapY = mPosition.y < Target->GetPosition().y + Target->GetSprite()->GetSize().y &&
+		mPosition.y + mSprite->GetSize().y > Target->GetPosition().y;
+
+	if (overlapX && overlapY) {
+		OldTarget = Target; 
+		std::cout << "Collision detected with " << Target << std::endl;
+		return true;
+	}
+	return false;
 	
-	return overlapX && overlapY;
+
 }

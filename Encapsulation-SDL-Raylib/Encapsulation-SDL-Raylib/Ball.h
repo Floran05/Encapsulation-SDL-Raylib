@@ -11,6 +11,6 @@ public:
 	~Ball();
 	void Update();
 	void OnCollideWithPlayer() { IsColliding = true; }
-	
+	void ResetPosition();
 };
 
