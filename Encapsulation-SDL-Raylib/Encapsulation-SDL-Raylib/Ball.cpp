@@ -26,7 +26,7 @@ void Ball::Update()
 		mSpeedMultiplier *= 1.2;
 		IsColliding = false;
 	}
-	if (mPosition.x - mSprite->GetSize().x < 0) {
+	if (mPosition.x + mSprite->GetSize().x < 0) {
 		I(Game)->OnGoal(false);
 		ResetPosition();
 	}
@@ -41,6 +41,18 @@ void Ball::ResetPosition()
 	mSpeedMultiplier = INITIAL_SPEED;
 	const float randAngle = rand() * 1.f / RAND_MAX;
 	mPosition = { (I(Game)->GetWindow()->GetWindowSize().x * 0.5f) - (mSprite->GetSize().x * 0.5f), ((I(Game)->GetWindow()->GetWindowSize().y * 0.5f) + (mSprite->GetSize().y * 0.5f)) };
+	/*float x = static_cast<float>(std::rand()) / RAND_MAX * 2.0f - 1.0f; 
+	float y = static_cast<float>(std::rand()) / RAND_MAX * 2.0f - 1.0f;*/
+	bool isRight = std::rand() % 2 == 0;
+	float minAngle = isRight ? 30.f : 120.0f;
+	float maxAngle = isRight ? 60.0f : 150.0f;
+	float angle = minAngle + static_cast<float>(std::rand()) / RAND_MAX * (maxAngle - minAngle);
+	angle = angle * (3.14159265f / 180.0f); 
+	float x = std::cos(angle);
+	float y = std::sin(angle);
+	SetDirection(Custom::Vector2f{ x, y });
 }
+
+
 
 

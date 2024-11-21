@@ -14,5 +14,6 @@ public:
 	void Update();
 	void OnCollideWithPlayer() { IsColliding = true; }
 	void ResetPosition();
+	
 };
 
