@@ -132,7 +132,7 @@ void Game::OnGoal(bool leftSide)
 	else
 	{
 		mPlayerRight->IncrementPoints(INCREMENT_POINTS);
-		if (mPlayerLeft->GetPoints() >= 10) {
+		if (mPlayerRight->GetPoints() >= 10) {
 			exit(1);
 		}
 	}
