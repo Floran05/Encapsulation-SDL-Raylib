@@ -10,25 +10,23 @@ int main(int argc, char* argv[])
 {
 	srand(time(NULL));
 
-	ELibrary selectedLibrary = ELibrary::Raylib;
+	ELibrary selectedLibrary = ELibrary::SDL;
 
 	if (argc > 1)
 	{
-		if (argv[1] == "-raylib")
+		if (strcmp(argv[1], "-raylib") == 0)
 		{
 			selectedLibrary = ELibrary::Raylib;
 		}
-		else if (argv[1] == "-sdl")
+		else if (strcmp(argv[1], "-sdl") == 0)
 		{
 			selectedLibrary = ELibrary::SDL;
 		}
 	}
 
 	Game* g = I(Game);
-	g->Init(selectedLibrary, "Encapsulation - SDL - Raylib", 1080, 720, 144);
+	g->Init(selectedLibrary, selectedLibrary == ELibrary::SDL ? "Encapsulation - SDL" : "Encapsulation - Raylib", 1080, 720, 144);
 	g->Loop();
-
-	//system("pause");
 
 	return 0;
 }

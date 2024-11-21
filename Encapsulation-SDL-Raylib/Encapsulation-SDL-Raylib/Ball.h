@@ -7,12 +7,18 @@
 class Ball : public Entity
 {
 private :
+
 	bool IsColliding;
+
+	Entity* mCurrentTarget;
+	Entity* mOldTarget;
+
 public:
 	Ball();
 	~Ball();
 	void Update();
-	void OnCollideWithPlayer() { IsColliding = true; }
+	void OnCollideWithPlayer(Entity* Target);
 	void ResetPosition();
+	
 };
 

@@ -19,7 +19,7 @@ void TimeManagerRaylib::SetMaxFramerate(int Framerate)
 
 float TimeManagerRaylib::GetTime()
 {
-	return ::GetTime() ;
+	return static_cast<float>(::GetTime()) ;
 }
 
 void TimeManagerRaylib::OnFrameStart()
@@ -38,5 +38,5 @@ void TimeManagerRaylib::ApplyFramerateLimit()
 float TimeManagerRaylib::GetFramerate()
 {
 	float frameTime = GetFrameTime();
-	return frameTime > 0.f ? round(1.f / frameTime) : 0.f;
+	return static_cast<float>(frameTime > 0.f ? round(1.f / frameTime) : 0.f);
 }

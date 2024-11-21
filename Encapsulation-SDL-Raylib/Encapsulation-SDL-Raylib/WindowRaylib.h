@@ -10,6 +10,12 @@ public:
 	WindowRaylib();
 	~WindowRaylib();
 
+private:
+
+	Font mFont;
+
+public:
+
 	virtual void InitLibrary() override;
 	virtual void CreateWindow(const std::string& WindowTitle, int Width, int Height) override;
 	virtual bool IsWindowOpen() override;

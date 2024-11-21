@@ -46,10 +46,10 @@ void Player::Move(float X, float Y)
 		mPosition.y = 0;
 	}
 
-	const int windowHeight = I(Game)->GetWindow()->GetWindowSize().y;
-	const int spriteHeight = GetSprite()->GetSize().y;
+	const int windowHeight = static_cast<int>(I(Game)->GetWindow()->GetWindowSize().y);
+	const int spriteHeight = static_cast<int>(GetSprite()->GetSize().y);
 	if (mPosition.y > windowHeight - spriteHeight)
 	{
-		mPosition.y = windowHeight - spriteHeight;
+		mPosition.y = windowHeight - spriteHeight * 1.f;
 	}
 }

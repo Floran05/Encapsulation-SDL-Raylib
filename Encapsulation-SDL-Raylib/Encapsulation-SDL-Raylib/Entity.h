@@ -21,7 +21,7 @@ protected:
 	Custom::Vector2f mDirection;
 
 	float mSpeedMultiplier;
-	Entity* OldTarget = nullptr;
+
 public:
 
 	Sprite* GetSprite() const { return mSprite; }
