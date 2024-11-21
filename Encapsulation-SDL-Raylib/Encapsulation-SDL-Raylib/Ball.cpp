@@ -25,7 +25,7 @@ void Ball::Update()
 	}
 	if (IsColliding && mCurrentTarget != mOldTarget) {
 		Move(-mDirection.x, mDirection.y);
-		mSpeedMultiplier *= 1.2;
+		mSpeedMultiplier *= 1.2f;
 		IsColliding = false;
 		mOldTarget = mCurrentTarget;
 		mCurrentTarget = nullptr;

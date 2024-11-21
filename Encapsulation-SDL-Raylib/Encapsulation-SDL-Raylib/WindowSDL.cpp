@@ -192,7 +192,7 @@ Custom::Vector2f WindowSDL::GetWindowSize()
 	int width = 0;
 	int height = 0;
 	SDL_GetWindowSize(mWindow, &width, &height);
-	return Custom::Vector2f(width, height);
+	return Custom::Vector2f(width * 1.f, height * 1.f);
 }
 
 

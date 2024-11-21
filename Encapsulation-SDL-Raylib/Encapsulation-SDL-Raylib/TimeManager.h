@@ -2,7 +2,7 @@
 class TimeManager
 {
 protected:
-	int mMaxFrameRate;
+	int mMaxFrameRate = -1;
 public:
 	virtual void SetMaxFramerate(int Framerate) = 0;
 	virtual float GetTime() = 0;

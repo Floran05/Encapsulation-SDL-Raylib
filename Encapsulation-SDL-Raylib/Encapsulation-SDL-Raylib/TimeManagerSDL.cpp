@@ -55,10 +55,10 @@ void TimeManagerSDL::ApplyFramerateLimit()
 	if (mMaxFrameRate < 1) return;
 
 	float elapsedTime = GetElapsedTime();
-	float remainingTime = floor((1000.f / mMaxFrameRate) - (elapsedTime * 1000));
+	float remainingTime = static_cast<float>(floor((1000.f / mMaxFrameRate) - (elapsedTime * 1000.f)));
 	if (remainingTime > 0.f)
 	{
-		SDL_Delay(remainingTime);
+		SDL_Delay(static_cast<int>(remainingTime));
 	}
 }
 
@@ -66,5 +66,5 @@ float TimeManagerSDL::GetFramerate()
 {
 	float average = ComputeHistoryAverage();
 
-	return average > 0.f ? round(1.f / ComputeHistoryAverage()) : 0.f;
+	return average > 0.f ? static_cast<float>(round(1.f / ComputeHistoryAverage())) : 0.f;
 }

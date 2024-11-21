@@ -104,9 +104,9 @@ void Game::Loop()
 		}
 
 		mWindow->BeginDraw();
-		mWindow->DrawText(std::to_string(static_cast<int>(mTimeManager->GetFramerate())) + " FPS", (mWindow->GetWindowSize().x-120) , (mWindow->GetWindowSize().y-50), 35);
-		mWindow->DrawText("Player 1: " + std::to_string(mPlayerLeft->GetPoints()), (mWindow->GetWindowSize().x/4), 10, 70);
-		mWindow->DrawText("Player 2: " + std::to_string(mPlayerRight->GetPoints()), (mWindow->GetWindowSize().x *3/ 4), 10, 70);
+		mWindow->DrawText(std::to_string(static_cast<int>(mTimeManager->GetFramerate())) + " FPS", static_cast<int>(mWindow->GetWindowSize().x - 120) , static_cast<int>(mWindow->GetWindowSize().y - 50), 35);
+		mWindow->DrawText("Player 1: " + std::to_string(mPlayerLeft->GetPoints()), static_cast<int>(mWindow->GetWindowSize().x * 0.25f), 10, 70);
+		mWindow->DrawText("Player 2: " + std::to_string(mPlayerRight->GetPoints()), static_cast<int>(mWindow->GetWindowSize().x * 0.75f), 10, 70);
 		for (std::list<Entity*>::iterator it = mEntities.begin(); it != mEntities.end(); ++it)
 		{
 			mWindow->DrawEntity(*it);
