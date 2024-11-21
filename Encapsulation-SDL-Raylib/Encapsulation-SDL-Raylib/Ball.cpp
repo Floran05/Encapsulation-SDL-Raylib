@@ -4,6 +4,8 @@
 #include "Sprite.h"
 
 Ball::Ball()
+	: mCurrentTarget(nullptr)
+	, mOldTarget(nullptr)
 {
 	IsColliding = false;
 	mSpeedMultiplier = INITIAL_SPEED;
@@ -21,10 +23,12 @@ void Ball::Update()
 	{
 		Move(mDirection.x, -mDirection.y);
 	}
-	if (IsColliding) {
+	if (IsColliding && mCurrentTarget != mOldTarget) {
 		Move(-mDirection.x, mDirection.y);
 		mSpeedMultiplier *= 1.2;
 		IsColliding = false;
+		mOldTarget = mCurrentTarget;
+		mCurrentTarget = nullptr;
 	}
 	if (mPosition.x + mSprite->GetSize().x < 0) {
 		I(Game)->OnGoal(false);
@@ -34,6 +38,12 @@ void Ball::Update()
 		I(Game)->OnGoal(true);
 		ResetPosition();
 	}
+}
+
+void Ball::OnCollideWithPlayer(Entity* Target)
+{
+	IsColliding = true;
+	mCurrentTarget = Target;
 }
 
 void Ball::ResetPosition()
@@ -51,6 +61,9 @@ void Ball::ResetPosition()
 	float x = std::cos(angle);
 	float y = std::sin(angle);
 	SetDirection(Custom::Vector2f{ x, y });
+
+	mCurrentTarget = nullptr;
+	mOldTarget = nullptr;
 }
 
 

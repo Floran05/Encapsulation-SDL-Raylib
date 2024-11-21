@@ -32,23 +32,14 @@ void Entity::Move(float X, float Y)
 
 bool Entity::CheckCollision(Entity* Target)
 {
-	if (this == Target) return false; 
-	if (Target == OldTarget) {
-		OldTarget = nullptr;
-		return false;
-	}
+	if (this == Target) return false;
 
 	bool overlapX = mPosition.x < Target->GetPosition().x + Target->GetSprite()->GetSize().x &&
 					mPosition.x + mSprite->GetSize().x > Target->GetPosition().x;
 	bool overlapY = mPosition.y < Target->GetPosition().y + Target->GetSprite()->GetSize().y &&
 					mPosition.y + mSprite->GetSize().y > Target->GetPosition().y;
 
-	if (overlapX && overlapY) {
-		OldTarget = Target; 
-		std::cout << "Collision detected with " << Target << std::endl;
-		return true;
-	}
-	return false;
+	return overlapX && overlapY;
 	
 
 }

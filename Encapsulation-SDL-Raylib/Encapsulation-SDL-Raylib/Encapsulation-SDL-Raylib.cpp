@@ -28,7 +28,5 @@ int main(int argc, char* argv[])
 	g->Init(selectedLibrary, selectedLibrary == ELibrary::SDL ? "Encapsulation - SDL" : "Encapsulation - Raylib", 1080, 720, 144);
 	g->Loop();
 
-	//system("pause");
-
 	return 0;
 }

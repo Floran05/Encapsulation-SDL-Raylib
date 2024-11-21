@@ -55,18 +55,18 @@ void Game::Init(const ELibrary& Library, const std::string& WindowTitle, int Win
 
 	mWindow->InitLibrary();
 	mWindow->CreateWindow(WindowTitle, WindowWidth, WindowHeight);
-	mWindow->LoadFont("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Teko-VariableFont_wght.ttf");
+	mWindow->LoadFont("./Resources/Teko-VariableFont_wght.ttf");
 
 	mTimeManager->SetMaxFramerate(MaxFramerate);
 
-	Sprite* playerLeftSprite = mWindow->CreateSprite("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Computer.png");
-	Sprite* playerRightSprite = mWindow->CreateSprite("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\Player.png");
+	Sprite* playerLeftSprite = mWindow->CreateSprite("./Resources/Computer.png");
+	Sprite* playerRightSprite = mWindow->CreateSprite("./Resources/Player.png");
 	mPlayerLeft->Init(playerLeftSprite, { 50, (WindowHeight * 0.5f) - (playerLeftSprite->GetSize().y * 0.5f) });
 	mPlayerRight->Init(playerRightSprite, { WindowWidth - 50.f - playerRightSprite->GetSize().x, (WindowHeight * 0.5f) - (playerLeftSprite->GetSize().y * 0.5f) });
 	mEntities.emplace_back(mPlayerLeft);
 	mEntities.emplace_back(mPlayerRight);
 
-	Sprite* ballSprite = mWindow->CreateSprite("C:\\Users\\L3iith\\Documents\\GitHub\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Encapsulation-SDL-Raylib\\Resources\\ball.png");
+	Sprite* ballSprite = mWindow->CreateSprite("./Resources/ball.png");
 	mBall->Init(ballSprite, { (WindowWidth * 0.5f) - (ballSprite->GetSize().x * 0.5f), (WindowHeight * 0.5f) + (ballSprite->GetSize().y * 0.5f) });
 	mBall->ResetPosition();\
 	mEntities.emplace_back(mBall);
@@ -90,11 +90,11 @@ void Game::Loop()
 					
 					if (Ball* ball = dynamic_cast<Ball*>(*subIt))
 					{
-						ball->OnCollideWithPlayer();
+						ball->OnCollideWithPlayer(*it);
 					}
 					else if (Ball* ball = dynamic_cast<Ball*>(*it))
 					{
-						ball->OnCollideWithPlayer();
+						ball->OnCollideWithPlayer(*subIt);
 					}
 					
 				}
@@ -104,9 +104,9 @@ void Game::Loop()
 		}
 
 		mWindow->BeginDraw();
-		mWindow->DrawText(std::to_string(static_cast<int>(mTimeManager->GetFramerate())) + " FPS", (mWindow->GetWindowSize().x-120) , (mWindow->GetWindowSize().y-50), 25);
-		mWindow->DrawText(std::to_string(mPlayerLeft->GetPoints()), (mWindow->GetWindowSize().x/4), 10, 50);
-		mWindow->DrawText(std::to_string(mPlayerRight->GetPoints()), (mWindow->GetWindowSize().x *3/ 4), 10, 50);
+		mWindow->DrawText(std::to_string(static_cast<int>(mTimeManager->GetFramerate())) + " FPS", (mWindow->GetWindowSize().x-120) , (mWindow->GetWindowSize().y-50), 35);
+		mWindow->DrawText("Player 1: " + std::to_string(mPlayerLeft->GetPoints()), (mWindow->GetWindowSize().x/4), 10, 70);
+		mWindow->DrawText("Player 2: " + std::to_string(mPlayerRight->GetPoints()), (mWindow->GetWindowSize().x *3/ 4), 10, 70);
 		for (std::list<Entity*>::iterator it = mEntities.begin(); it != mEntities.end(); ++it)
 		{
 			mWindow->DrawEntity(*it);
