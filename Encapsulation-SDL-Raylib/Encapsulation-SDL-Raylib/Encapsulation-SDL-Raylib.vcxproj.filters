@@ -147,6 +147,8 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Resources\Teko-VariableFont_wght.ttf" />
+    <Font Include="Resources\Teko-VariableFont_wght.ttf">
+      <Filter>Fichiers de ressources</Filter>
+    </Font>
   </ItemGroup>
 </Project>

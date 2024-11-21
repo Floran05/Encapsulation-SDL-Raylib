@@ -211,7 +211,10 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Resources\Teko-VariableFont_wght.ttf" />
+    <Font Include="Resources\Teko-VariableFont_wght.ttf">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </Font>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
