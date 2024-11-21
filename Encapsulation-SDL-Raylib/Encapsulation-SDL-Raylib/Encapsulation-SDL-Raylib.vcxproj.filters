@@ -126,4 +126,27 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\ball.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Resources\BallMotion.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Resources\Board.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Resources\Computer.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Resources\Player.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="Resources\ScoreBar.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Teko-VariableFont_wght.ttf" />
+  </ItemGroup>
 </Project>

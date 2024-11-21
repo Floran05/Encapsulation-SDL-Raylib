@@ -2,8 +2,8 @@
 #include <iostream>
 #include "Entity.h"
 #include"SpriteRaylib.h"
-WindowRaylib::WindowRaylib() {
-
+WindowRaylib::WindowRaylib()
+{
 }
 
 WindowRaylib::~WindowRaylib()
@@ -37,6 +37,7 @@ Sprite* WindowRaylib::CreateSprite(const std::string& PathToTexture)
 
 void WindowRaylib::LoadFont(const std::string& PathToFontFile)
 {
+	mFont = ::LoadFont(PathToFontFile.c_str());
 }
 
 void WindowRaylib::DrawEntity(Entity* Entity)
@@ -60,7 +61,8 @@ void WindowRaylib::BeginDraw()
 
 void WindowRaylib::DrawText(const std::string& Text , int PosX, int PosY,int FontSize)
 {
-	::DrawText(Text.c_str(), PosX, PosY, FontSize, WHITE);
+	Vector2 pos = { PosX, PosY };
+	::DrawTextEx(mFont, Text.c_str(), pos, FontSize, 1.f, WHITE);
 }
 
 void WindowRaylib::EndDraw()

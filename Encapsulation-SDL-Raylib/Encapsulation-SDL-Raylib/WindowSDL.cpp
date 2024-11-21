@@ -96,7 +96,7 @@ Sprite* WindowSDL::CreateSprite(const std::string& PathToTexture)
 
 void WindowSDL::LoadFont(const std::string& PathToFontFile)
 {
-	mFont = TTF_OpenFont(PathToFontFile.c_str(), 70);
+	mFont = TTF_OpenFont(PathToFontFile.c_str(), 100);
 }
 
 void WindowSDL::ProcessEvents()
@@ -141,13 +141,10 @@ void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSi
 	if (!mFont || !mRenderer) return;
 	SDL_Surface* textSurface = TTF_RenderText_Solid(mFont, Text.c_str(), { 255, 255, 255 });
 	TTF_SetFontSize(mFont, FontSize);
-	SDL_Rect targetPosition;
-	targetPosition.x = PosX;
-	targetPosition.y = PosY;
-	targetPosition.w = 100;
-	targetPosition.h = 50;
 	
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(mRenderer, textSurface);
+	Custom::Vector2<int> textureSize;
+	SDL_QueryTexture(texture, NULL, NULL, &textureSize.x, &textureSize.y);
 	SDL_FreeSurface(textSurface);
 	if (!texture)
 	{
@@ -155,7 +152,12 @@ void WindowSDL::DrawText(const std::string& Text, int PosX, int PosY, int FontSi
 		return;
 	}
 
-	SDL_RenderCopy(mRenderer, texture, NULL, &targetPosition);
+	SDL_Rect targetRect;
+	targetRect.x = PosX;
+	targetRect.y = PosY;
+	targetRect.w = (textureSize.x / textureSize.y) * FontSize;
+	targetRect.h = FontSize;
+	SDL_RenderCopy(mRenderer, texture, NULL, &targetRect);
 	SDL_DestroyTexture(texture);
 }
 
