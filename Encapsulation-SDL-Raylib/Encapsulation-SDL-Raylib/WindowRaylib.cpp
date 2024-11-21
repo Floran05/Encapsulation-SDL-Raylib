@@ -4,6 +4,7 @@
 #include"SpriteRaylib.h"
 WindowRaylib::WindowRaylib()
 {
+	
 }
 
 WindowRaylib::~WindowRaylib()
@@ -46,7 +47,7 @@ void WindowRaylib::DrawEntity(Entity* Entity)
 	Position.x = Entity->GetPosition().x;
 	Position.y = Entity->GetPosition().y;
 	SpriteRaylib* sprite = dynamic_cast<SpriteRaylib*>(Entity->GetSprite());
-	DrawTexture(sprite->GetTexture(), Position.x, Position.y, WHITE);
+	DrawTexture(sprite->GetTexture(),static_cast<int>( Position.x), static_cast<int>(Position.y), WHITE);
 }
 
 void WindowRaylib::ProcessEvents()
@@ -61,8 +62,8 @@ void WindowRaylib::BeginDraw()
 
 void WindowRaylib::DrawText(const std::string& Text , int PosX, int PosY,int FontSize)
 {
-	Vector2 pos = { PosX, PosY };
-	::DrawTextEx(mFont, Text.c_str(), pos, FontSize, 1.f, WHITE);
+	Vector2 pos = { static_cast<float>(PosX), static_cast<float>(PosY) };
+	::DrawTextEx(mFont, Text.c_str(), pos, static_cast<float>(FontSize), 1.f, WHITE);
 }
 
 void WindowRaylib::EndDraw()
@@ -83,5 +84,5 @@ Custom::Vector2f WindowRaylib::GetWindowSize()
 	int height = 0;
 	width = GetScreenWidth();
 	height = GetScreenHeight();
-	return Custom::Vector2f(width,height);
+	return Custom::Vector2f((width)*1.f,(height)*1.f);
 }
